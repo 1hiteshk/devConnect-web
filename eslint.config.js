@@ -33,6 +33,7 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'no-undef': 'off',        // Turn off 'no-undef' to avoid errors with require()
     },
   },
 ]
