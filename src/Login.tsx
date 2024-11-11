@@ -4,15 +4,16 @@ import React, { useState } from "react";
 type Props = {};
 
 const Login = (props: Props) => {
-    const[email,setEmail]=useState<any>('');
-    const[password,setPassword]=useState<any>("");
+    const[emailId,setEmailId]=useState<any>('hitu@gmail.com');
+    const[password,setPassword]=useState<any>("Hitu@123");
 
     const handleLogin = async()=> {
         try{
-            const res = await axios.post('http://localhost:3001/login', {
-                email,
+            const res = await axios.post('http://localhost:7777/api/login', {
+                emailId,
                 password
             });
+
         } catch(err){
             console.error(err);
         }
@@ -29,8 +30,8 @@ const Login = (props: Props) => {
             </div>
             <input
               type="text"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              value={emailId}
+              onChange={(e)=>setEmailId(e.target.value)}
               placeholder="Email ID"
               className="input input-bordered w-full max-w-xs"
             />
@@ -48,7 +49,9 @@ const Login = (props: Props) => {
             />
           </label>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary my-2">Login</button>
+            <button className="btn w-full btn-primary my-2"
+             onClick={handleLogin}
+            >Login</button>
           </div>
         </div>
       </div>
