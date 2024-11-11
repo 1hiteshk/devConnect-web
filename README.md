@@ -7,6 +7,9 @@
 - create separate components
 - react router dom for routing , at root level
 - children routes and outlet (nested routing and rendering children in Outlet)
+- created an outlet in Body component
+- created a footer
+- created a login page
 
 
 Body
