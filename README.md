@@ -14,7 +14,10 @@
 - CORS install in backend => add cors middleware to app with configurations : origin , credentials: true
 - whenever making an api call so pass axios => { withCredentials : true }
 - so it will send back the token in other api calls
-- 
+- installation of redux toolkit ( react-redux @reduxjs/toolkit )
+- configureStore => provider => createSlice => add reducer to store 
+- utilize redux devtools docs extension
+- login and see if the data is coming properly in the store
 
 Body
   Navbar

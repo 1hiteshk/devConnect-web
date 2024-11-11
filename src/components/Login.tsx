@@ -1,25 +1,34 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constant";
 
 type Props = {};
 
 const Login = (props: Props) => {
-    const[emailId,setEmailId]=useState<any>('hitu@gmail.com');
-    const[password,setPassword]=useState<any>("Hitu@123");
+  const [emailId, setEmailId] = useState<any>("hitu@gmail.com");
+  const [password, setPassword] = useState<any>("Hitu@123");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleLogin = async()=> {
-        try{
-            const res = await axios.post('http://localhost:7777/api/login', {
-                emailId,
-                password
-            },
-          {withCredentials: true});
-
-        } catch(err){
-            console.error(err);
-        }
-
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/login`,
+        {
+          emailId,
+          password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data));
+      return navigate("/");
+    } catch (err) {
+      console.error(err);
     }
+  };
   return (
     <div className="flex justify-center my-10">
       <div className="card bg-base-300 w-96 shadow-xl flex justify-center ">
@@ -32,7 +41,7 @@ const Login = (props: Props) => {
             <input
               type="text"
               value={emailId}
-              onChange={(e)=>setEmailId(e.target.value)}
+              onChange={(e) => setEmailId(e.target.value)}
               placeholder="Email ID"
               className="input input-bordered w-full max-w-xs"
             />
@@ -45,14 +54,17 @@ const Login = (props: Props) => {
               type="password"
               placeholder="password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               className="input input-bordered w-full max-w-xs"
             />
           </label>
           <div className="card-actions justify-center">
-            <button className="btn w-full btn-primary my-2"
-             onClick={handleLogin}
-            >Login</button>
+            <button
+              className="btn w-full btn-primary my-2"
+              onClick={handleLogin}
+            >
+              Login
+            </button>
           </div>
         </div>
       </div>
