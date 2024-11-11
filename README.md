@@ -10,7 +10,11 @@
 - created an outlet in Body component
 - created a footer
 - created a login page
-
+- install axios
+- CORS install in backend => add cors middleware to app with configurations : origin , credentials: true
+- whenever making an api call so pass axios => { withCredentials : true }
+- so it will send back the token in other api calls
+- 
 
 Body
   Navbar

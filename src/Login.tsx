@@ -12,7 +12,8 @@ const Login = (props: Props) => {
             const res = await axios.post('http://localhost:7777/api/login', {
                 emailId,
                 password
-            });
+            },
+          {withCredentials: true});
 
         } catch(err){
             console.error(err);
