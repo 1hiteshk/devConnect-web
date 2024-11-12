@@ -20,6 +20,8 @@
 - login and see if the data is coming properly in the store
 - cant access other routes without login
 - if token is not present redirect to login page 
+- logout functionality 
+- profile page
 
 Body
   Navbar

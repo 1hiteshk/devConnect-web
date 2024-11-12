@@ -1,11 +1,29 @@
+import axios from 'axios'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../utils/constant'
+import { addUser, removeUser } from '../utils/userSlice'
 
 type Props = {}
 
 const Navbar = (props: Props) => {
   const user = useSelector((store:any)=> store.user)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async() => {
+    try {
+      // in this api in backend we are setting token to null and expire date is the date.now()
+      await axios.post(`${BASE_URL}/logout`,{},{withCredentials:true});
+      // we also have to clear the redux store and redirect to login page 
+      dispatch(removeUser(null));
+      return navigate('/login');
+      //window.location.href = '/login';
+    } catch (error) {
+      
+    }
+  }
   return (
     <div className="navbar bg-base-300">
     <div className="flex-1">
@@ -32,7 +50,7 @@ const Navbar = (props: Props) => {
             </Link>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li><a onClick={handleLogout}>Logout</a></li>
         </ul>
       </div>
     </div> }

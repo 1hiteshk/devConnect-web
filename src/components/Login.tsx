@@ -10,6 +10,7 @@ type Props = {};
 const Login = (props: Props) => {
   const [emailId, setEmailId] = useState<any>("hitu@gmail.com");
   const [password, setPassword] = useState<any>("Hitu@123");
+  const [error,setError] = useState<any>("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ const Login = (props: Props) => {
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
+      setError(err?.response?.data || "something wrong happened");
       console.error(err);
     }
   };
@@ -58,6 +60,8 @@ const Login = (props: Props) => {
               className="input input-bordered w-full max-w-xs"
             />
           </label>
+
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
             <button
               className="btn w-full btn-primary my-2"
