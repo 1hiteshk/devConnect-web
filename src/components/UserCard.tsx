@@ -10,7 +10,7 @@ const UserCard = ({ user }: Props) => {
     <div>
       <div className="card bg-base-300 w-96 shadow-xl">
         <figure>
-          <img
+          <img className="w-full"
             src={
               user.photoUrl ||
               "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
