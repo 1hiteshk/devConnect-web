@@ -22,6 +22,8 @@
 - if token is not present redirect to login page 
 - logout functionality 
 - profile page
+- get the feed api data and add feed in redux store
+- user Card component
 
 Body
   Navbar
