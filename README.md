@@ -18,6 +18,8 @@
 - configureStore => provider => createSlice => add reducer to store 
 - utilize redux devtools docs extension
 - login and see if the data is coming properly in the store
+- cant access other routes without login
+- if token is not present redirect to login page 
 
 Body
   Navbar
