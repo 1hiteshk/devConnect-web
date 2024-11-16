@@ -1,43 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
 import UserCard from "./UserCard";
 import axios from "axios";
-import { BASE_URL } from "../utils/constant";
+import { BASE_URL, formFields } from "../utils/constant";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
-
-// Props for InputField component
-interface InputFieldProps {
-  label: string;
-  name: string; // name for easy identification in handleInputChange
-  value: string | number | string[];
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-  type?: string;
-}
-
-// Reusable InputField component with type definitions
-const InputField: React.FC<InputFieldProps> = ({
-  label,
-  name,
-  value,
-  onChange,
-  placeholder,
-  type = "text",
-}) => (
-  <label className="form-control w-full max-w-xs">
-    <div className="label">
-      <span className="label-text">{label}</span>
-    </div>
-    <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className="input input-bordered w-full max-w-xs"
-      name={name} // setting name for easy identification in handleInputChange
-    />
-  </label>
-);
+import InputField from "./Common/InputField";
 
 type User = {
   firstName: string;
@@ -71,7 +38,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
     // clear errors
     setError("");
     try {
-      const res = await axios.patch(
+      const res = await axios.put(
         `${BASE_URL}/profile/edit`,
         {
           firstName: formData.firstName,
@@ -92,30 +59,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
     }
   };
 
-  // List of form fields to map over
-  const formFields = [
-    {
-      name: "firstName",
-      label: "First Name",
-      placeholder: "First Name",
-      type: "text",
-    },
-    {
-      name: "lastName",
-      label: "Last Name",
-      placeholder: "Last Name",
-      type: "text",
-    },
-    { name: "age", label: "Age", placeholder: "Age", type: "number" },
-    { name: "gender", label: "Gender", placeholder: "Gender", type: "text" },
-    { name: "about", label: "About", placeholder: "About", type: "text" },
-    {
-      name: "photoUrl",
-      label: "Photo URL",
-      placeholder: "Photo URL",
-      type: "text",
-    },
-  ];
+ 
 
   // Update function for handling changes
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

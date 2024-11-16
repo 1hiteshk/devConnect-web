@@ -4,7 +4,11 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <footer className="footer bg-base-300 text-neutral-content items-center p-4 fixed bottom-0">
+    /* mt-auto on the Footer:
+
+Automatically pushes the footer to the bottom of the page when there's insufficient content.
+On longer pages, the footer appears after scrolling past the main content. */
+    <footer className="footer bg-base-300 text-neutral-content items-center p-4 mt-auto ">
   <aside className="grid-flow-col items-center">
     <svg
       width="36"

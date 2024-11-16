@@ -7,8 +7,8 @@ type Props = {
 const UserCard = ({ user }: Props) => {
   const { firstName, lastName, age, gender, skills, about } = user;
   return (
-    <div>
-      <div className="card bg-base-300 w-96 shadow-xl">
+    <div >
+      <div className="card bg-base-300 w-96 shadow-xl h-full">
         <figure>
           <img className="w-full"
             src={
