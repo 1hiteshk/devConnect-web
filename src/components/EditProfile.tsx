@@ -22,13 +22,13 @@ type Props = {
 
 const EditProfile: React.FC<Props> = ({ user }) => {
   const [formData, setFormData] = useState<User>({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    age: user.age,
-    gender: user.gender,
+    firstName: user.firstName || "",
+    lastName: user.lastName || "",
+    age: user?.age ,
+    gender: user?.gender,
     about: user.about,
     photoUrl: user.photoUrl,
-    skills: user.skills,
+    skills: user?.skills,
   });
   const [error, setError] = useState<any>("");
   const [showToast, setShowToast] = useState(false);
