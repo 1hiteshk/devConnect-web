@@ -1,11 +1,29 @@
+import axios from "axios";
 import React from "react";
+import { BASE_URL } from "../utils/constant";
+import { useDispatch } from "react-redux";
+import { removeFeed } from "../utils/feedSlice";
 
 type Props = {
   user: any;
 };
 
 const UserCard = ({ user }: Props) => {
-  const { firstName, lastName, age, gender, skills, about } = user;
+  const { _id, firstName, lastName, age, gender, skills, about } = user;
+  const dispatch = useDispatch();
+
+  const handleSendRequest = async (status:any,userId:any)=>{
+    try {
+      const res = await axios.post(`${BASE_URL}/request/send/${status}/${userId}`,
+        {}, // this is a post call so the second parameter is data 
+        { withCredentials: true}
+      )
+      // as soon as the request is send the current card should go away from our feed , then next card
+      dispatch(removeFeed(userId))
+    } catch (error) {
+      
+    }
+  }
   return (
     <div >
       <div className="card bg-base-300 w-96 shadow-xl h-full">
@@ -34,8 +52,8 @@ const UserCard = ({ user }: Props) => {
             ))}
           </div>
           <div className="card-actions flex justify-center my-4 w-full">
-            <button className="btn btn-primary w-[45%]">Ignore</button>
-            <button className="btn btn-success w-[45%]">Interested</button>
+            <button className="btn btn-primary w-[45%]" onClick={()=> handleSendRequest("ignored",_id)}>Ignore</button>
+            <button className="btn btn-success w-[45%]" onClick={()=> handleSendRequest("interested",_id)}>Interested</button>
           </div>
         </div>
       </div>

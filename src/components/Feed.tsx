@@ -9,9 +9,10 @@ type Props = {};
 
 const Feed = (props: Props) => {
   const feed = useSelector((store: any) => store.feed);
+  console.log({ feed });
   const dispatch = useDispatch();
   const getFeed = async () => {
-    if (feed) return;
+    if (feed.length >= 0) return;
     try {
       const res = await axios.get(`${BASE_URL}/feed`, {
         withCredentials: true,
@@ -25,6 +26,14 @@ const Feed = (props: Props) => {
   useEffect(() => {
     getFeed();
   }, []);
+
+  if (!feed) return;
+  if (feed.length <= 0)
+    return (
+      <h1 className="flex justify-center items-center h-full font-bold text-2xl">
+        No new users found
+      </h1>
+    );
   return (
     feed && (
       <div className="flex justify-center items-center my-10">

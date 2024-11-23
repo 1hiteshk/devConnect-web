@@ -39,7 +39,7 @@ const Requests = (props: Props) => {
   }, []);
   if (!requests) return;
 
-  if (requests.length === 0)
+  if (requests.length <= 0)
     return (
       <h1 className="flex justify-center items-center h-full font-bold text-2xl">
         No requests found
@@ -63,7 +63,7 @@ const Requests = (props: Props) => {
               {age && gender && <p>{age+","+gender}</p>}
               <p>{about}</p>
             </div>
-            <div>
+            <div className="flex">
                 <button className="btn btn-primary mx-2" onClick={()=> reviewRequest('accepted',request._id)}>Accept</button>
                 <button className="btn btn-secondary mx-2" onClick={()=> reviewRequest('rejected',request._id)} >Reject</button>
             </div>
