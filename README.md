@@ -23,7 +23,10 @@
 - logout functionality 
 - profile page
 - get the feed api data and add feed in redux store
-- user Card component
+- user Card component on feed
+- edit profile feature
+- show toast message on save of profile 
+- see all my connections on a page 
 
 Body
   Navbar

@@ -39,7 +39,7 @@ const Body = (props: Props) => {
     /* min-h-screen:
 
 Ensures the parent container spans at least the full height of the viewport. */
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <Navbar />
       {/*  any children routes of Body comp. will render over here in Outlet */}
       <Outlet />
