@@ -27,6 +27,7 @@
 - edit profile feature
 - show toast message on save of profile 
 - see all my connections on a page 
+- New page to see all the connection requests
 
 Body
   Navbar

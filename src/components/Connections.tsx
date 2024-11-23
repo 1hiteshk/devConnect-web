@@ -31,7 +31,7 @@ const Connections = (props: Props) => {
 
   if (connections.length === 0)
     return (
-      <h1 className="flex justify-center font-bold text-2xl">
+      <h1 className="flex justify-center items-center h-full font-bold text-2xl">
         No connections found
       </h1>
     );
@@ -40,10 +40,10 @@ const Connections = (props: Props) => {
     <div className="text-center my-10">
       <h1 className="font-bold text-2xl">Connections</h1>
       {connections.map((connection: any) => {
-        const { firstName, lastName, photoUrl, gender, age, about } =
+        const { _id, firstName, lastName, photoUrl, gender, age, about } =
           connection;
         return (
-          <div className="m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
+          <div key={_id} className="m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
             <div>
               <img src={photoUrl} className="w-20 h-20 rounded-full" alt="avatar" />
             </div>
