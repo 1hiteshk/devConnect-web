@@ -43,7 +43,7 @@ const Connections = (props: Props) => {
         const { _id, firstName, lastName, photoUrl, gender, age, about } =
           connection;
         return (
-          <div key={_id} className="flex items-center  m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
+          <div key={_id} className="flex items-center  m-4 p-4 rounded-lg bg-base-300 w-full lg:w-2/3 mx-auto">
             <div>
               <img src={photoUrl} className="w-24 rounded-full" alt="avatar" />
             </div>

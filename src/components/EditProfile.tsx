@@ -38,7 +38,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
     // clear errors
     setError("");
     try {
-      const res = await axios.put(
+      const res = await axios.patch(
         `${BASE_URL}/profile/edit`,
         {
           firstName: formData.firstName,
