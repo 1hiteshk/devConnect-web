@@ -24,7 +24,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
   const [formData, setFormData] = useState<User>({
     firstName: user.firstName || "",
     lastName: user.lastName || "",
-    age: user?.age ,
+    age: user?.age,
     gender: user?.gender,
     about: user.about,
     photoUrl: user.photoUrl,
@@ -46,7 +46,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
           age: formData.age,
           gender: formData.gender,
           about: formData.about,
-          photoUrl: formData.photoUrl
+          photoUrl: formData.photoUrl,
         },
         { withCredentials: true }
       );
@@ -59,8 +59,6 @@ const EditProfile: React.FC<Props> = ({ user }) => {
     }
   };
 
- 
-
   // Update function for handling changes
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -71,7 +69,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
   };
 
   return (
-    <div className="flex justify-center my-10 gap-4">
+    <div className="flex flex-col justify-center my-10 gap-8 items-center md:flex-row md:gap-4">
       <div className="flex ">
         <div className="card bg-base-300 w-96 shadow-xl flex justify-center ">
           <div className="card-body">
@@ -102,13 +100,16 @@ const EditProfile: React.FC<Props> = ({ user }) => {
         </div>
       </div>
       {/* Live update of user data in UserCard */}
+      <div className="flex h-[675px]">
       <UserCard user={formData} />
-      {showToast && <div className="toast toast-top toast-center">
- 
- <div className="alert alert-success">
-   <span>Profile saved successfully.</span>
- </div>
-</div>}
+      </div>
+      {showToast && (
+        <div className="toast toast-top toast-center">
+          <div className="alert alert-success">
+            <span>Profile saved successfully.</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

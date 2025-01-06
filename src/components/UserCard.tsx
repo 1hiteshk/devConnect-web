@@ -18,7 +18,7 @@ const UserCard = ({ user }: Props) => {
         {}, // this is a post call so the second parameter is data 
         { withCredentials: true}
       )
-      // as soon as the request is send the current card should go away from our feed , then next card
+      // as soon as the request is send the current User-card should go away from our feed , then next card
       dispatch(removeFeed(userId))
     } catch (error) {
       

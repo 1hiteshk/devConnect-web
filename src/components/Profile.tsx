@@ -7,7 +7,7 @@ type Props = {}
 const Profile = (props: Props) => {
   const user = useSelector((store:any)=>store.user)
   return (
-    user && <div>
+    user && <div >
     <EditProfile user={user} />
   </div>
   )
