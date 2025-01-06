@@ -52,21 +52,24 @@ const Requests = (props: Props) => {
       {requests.map((request: any) => {
         const { _id, firstName, lastName, photoUrl, gender, age, about } = request.fromUserId;
         return (
-          <div key={_id} className="flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-full lg:w-2/3 mx-auto">
-            <div>
-              <img src={photoUrl} className="w-20 h-20 rounded-full" alt="avatar" />
+          <div key={_id} className="flex flex-col m-4 p-4 rounded-lg bg-base-300 w-full lg:w-2/3 mx-auto">
+            <div key={_id} className="flex justify-between items-center ">
+            <div className=" ">
+              <img src={photoUrl} className="min-w-[80px] min-h-[80px] max-w-20 md:w-20 md:h-20 rounded-full" alt="avatar" />
             </div>
-            <div className="text-left mx-4">
+            <div className="text-left mx-4 w-full">
               <h2 className="font-bold text-xl">
                 {firstName} &nbsp; {lastName}
               </h2>
               {age && gender && <p>{age+","+gender}</p>}
-              <p>{about}</p>
+              <p className=" hidden md:flex">{about}</p>
             </div>
             <div className="flex">
                 <button className="btn btn-primary mx-2" onClick={()=> reviewRequest('accepted',request._id)}>Accept</button>
                 <button className="btn btn-secondary mx-2" onClick={()=> reviewRequest('rejected',request._id)} >Reject</button>
             </div>
+            </div>
+            <p className="flex mt-1 md:hidden">{about}</p>
           </div>
         );
       })}
