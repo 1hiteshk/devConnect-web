@@ -44,4 +44,4 @@ Body
 # Real time chat using WebSocket (Socket.io)
   - Built UI for chat window on `/chat/:targetUserId`
   - set up socket.io on both client api and server api
-  -  
+  - for frontend : `npm i socket.io-client`
