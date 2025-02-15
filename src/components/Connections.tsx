@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { BASE_URL } from "../utils/constant";
+import { BASE_URL, maleImgUrl } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
 import connectionSlice from "../utils/connectionSlice";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -43,17 +44,30 @@ const Connections = (props: Props) => {
         const { _id, firstName, lastName, photoUrl, gender, age, about } =
           connection;
         return (
-          <div key={_id} className="flex items-center  m-4 p-4 rounded-lg bg-base-300 w-full lg:w-2/3 mx-auto">
-            <div>
-              <img src={photoUrl} className="w-24 rounded-full" alt="avatar" />
+          <div
+            key={_id}
+            className="flex items-center justify-between m-4 p-4 rounded-lg bg-base-300 w-full lg:w-2/3 mx-auto"
+          >
+            <div className="flex items-center gap-4">
+              <div>
+                <img
+                  src={photoUrl}
+                  className="w-24 h-24 rounded-full"
+                  alt="avatar"
+                />
+              </div>
+              <div className="text-left mx-4">
+                <h2 className="font-bold text-xl">
+                  {firstName} {lastName}
+                </h2>
+                {age && gender && <p>{age + "," + gender}</p>}
+                <p>{about}</p>
+              </div>
             </div>
-            <div className="text-left mx-4">
-              <h2 className="font-bold text-xl">
-                {firstName} {lastName}
-              </h2>
-              {age && gender && <p>{age+","+gender}</p>}
-              <p>{about}</p>
-            </div>
+
+            <Link to={`/chat/${_id}`}>
+              <button className="btn btn-primary">Chat</button>
+            </Link>
           </div>
         );
       })}

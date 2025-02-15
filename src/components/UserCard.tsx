@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { BASE_URL } from "../utils/constant";
+import { BASE_URL, femaleImgUrl, maleImgUrl } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { removeFeed } from "../utils/feedSlice";
 
@@ -31,7 +31,7 @@ const UserCard = ({ user }: Props) => {
           <img className="w-full"
             src={
               user.photoUrl ||
-              "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+              gender==='male'? maleImgUrl : femaleImgUrl
             }
             alt="user"
           />
