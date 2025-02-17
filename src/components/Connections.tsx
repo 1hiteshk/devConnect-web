@@ -52,7 +52,7 @@ const Connections = (props: Props) => {
               <div>
                 <img
                   src={photoUrl}
-                  className="w-24 h-24 rounded-full"
+                  className="w-14 h-14   md:w-20 md:h-20 object-cover rounded-full"
                   alt="avatar"
                 />
               </div>

@@ -30,7 +30,7 @@ const UserCard = ({ user }: Props) => {
         <figure>
           <img className="w-full"
             src={
-              user.photoUrl ||
+             user?.photoUrl ? user.photoUrl :
               gender==='male'? maleImgUrl : femaleImgUrl
             }
             alt="user"

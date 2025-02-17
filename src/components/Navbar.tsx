@@ -27,7 +27,10 @@ const Navbar = (props: Props) => {
   return (
     <div className="navbar bg-base-300">
     <div className="flex-1">
-      <Link to={'/'} className="btn btn-ghost text-xl">🧑‍💻 Connect2Dev</Link>
+      <Link to={'/'} className="btn btn-ghost text-xl">🧑‍💻 
+      <img className='w-7 h-7 hidden sm:block' src='https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif' 
+       alt=''/>
+       Connect2Dev</Link>
     </div>
    { user && <div className="flex-none gap-2">
       

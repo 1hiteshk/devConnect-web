@@ -7,6 +7,7 @@ import { BASE_URL } from "./utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addUser } from "./utils/userSlice";
+import BottomNavigation from "./components/BottomNavigation";
 
 type Props = {};
 
@@ -21,7 +22,7 @@ const Body = (props: Props) => {
       const res = await axios.get(`${BASE_URL}/profile/view`, {
         withCredentials: true,
       });
-      console.log(res)
+      console.log(res,'res')
       dispatch(addUser(res.data));
     } catch (error) {
       // if user is not authenticated (not logged in), redirect to login page
@@ -35,6 +36,8 @@ const Body = (props: Props) => {
       fetchUser();
   }, []);
 
+  console.log(userData,'res');
+
   return (
     /* min-h-screen:
 
@@ -44,6 +47,9 @@ Ensures the parent container spans at least the full height of the viewport. */
       {/*  any children routes of Body comp. will render over here in Outlet */}
       <Outlet />
       <Footer />
+      { userData && <div className="block md:hidden">
+        <BottomNavigation />
+      </div>}
     </div>
   );
 };

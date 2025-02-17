@@ -54,9 +54,8 @@ const Requests = (props: Props) => {
         return (
           <div key={_id} className="flex flex-col m-4 p-4 rounded-lg bg-base-300 w-full lg:w-2/3 mx-auto">
             <div key={_id} className="flex justify-between items-center ">
-            <div className=" ">
-              <img src={photoUrl} className="min-w-[80px] min-h-[80px] max-w-20 md:w-20 md:h-20 rounded-full" alt="avatar" />
-            </div>
+            <img src={photoUrl} className="w-14 h-14 min-h-14 min-w-14   md:w-20 md:min-w-20 md:h-20 md:min-h-20 object-cover rounded-full" alt="avatar" />
+            
             <div className="text-left mx-4 w-full">
               <h2 className="font-bold text-xl">
                 {firstName} &nbsp; {lastName}
@@ -64,6 +63,7 @@ const Requests = (props: Props) => {
               {age && gender && <p>{age+","+gender}</p>}
               <p className=" hidden md:flex">{about}</p>
             </div>
+            
             <div className="flex">
                 <button className="btn btn-primary mx-2" onClick={()=> reviewRequest('accepted',request._id)}>Accept</button>
                 <button className="btn btn-secondary mx-2" onClick={()=> reviewRequest('rejected',request._id)} >Reject</button>
