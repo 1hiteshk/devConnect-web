@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BASE_URL } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/feedSlice";
@@ -11,14 +11,15 @@ const Feed = (props: Props) => {
   const feed = useSelector((store: any) => store.feed);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const isFetching = useRef(false); // ✅ Prevent multiple API calls
 
   //console.log({ feed });
-  //console.log(feed.length  );
+  // console.log(feed.length  );
   const dispatch = useDispatch();
 
-  const getFeed = async (pageNum = 1) => {
-    // if (feed.length > 0) return;
-    if (loading) return;
+  const getFeed = async (pageNum = page) => {
+    if (isFetching.current || feed.length > 1) return; // ✅ Stop extra API calls
+    isFetching.current = true;
     setLoading(true);
     try {
       const res = await axios.get(`${BASE_URL}/feed?page=${pageNum}`, {
@@ -26,21 +27,25 @@ const Feed = (props: Props) => {
       }); // pass with credentials : true to make successful auth api call
       const users = res?.data?.data || [];
       if (users.length > 0) {
-        dispatch(addFeed(users));
+        dispatch(addFeed([...feed, ...users]));
       }
       setLoading(false);
+      isFetching.current = false;
       return users;
     } catch (error) {
       console.log(error);
       setLoading(false);
+      isFetching.current = false;
     }
   };
 
   useEffect(() => {
     getFeed();
-  }, []);
+  }, [page]);
 
-  const fetchMoreUsers = async () => {
+  /*  const fetchMoreUsers = async () => {
+    if (loading || feed.length>1) return;
+    console.log(feed.length, loading);
     if (feed.length === 1 || feed.length === 0) {
       const nextPage = page + 1;
       const newUsers = await getFeed(nextPage);
@@ -49,13 +54,16 @@ const Feed = (props: Props) => {
         dispatch(addFeed([...feed, ...newUsers]));
       }
     }
-  };
+  }; */
 
   //console.log({feed});
 
   useEffect(() => {
-    if (feed.length > 1) return;
-    fetchMoreUsers();
+    // if (feed.length > 1 || loading) return;
+    // fetchMoreUsers();
+    if (feed.length === 1) {
+      setPage((prev) => prev + 1);
+    }
   }, [feed]);
 
   if (!feed) return;
