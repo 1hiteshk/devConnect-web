@@ -30,6 +30,9 @@ export const formFields = [
     placeholder: "Photo URL",
     type: "text",
   },
+  {
+    name: 'skills', label: "Skills", placeholder: 'Enter Skills comma separated', type: 'text',
+  }
 ];
 
 export const femaleImgUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXSTblEVkkdJh15jlAbC3FpvuzCKb1o-pQQA&s'

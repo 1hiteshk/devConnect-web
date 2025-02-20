@@ -100,7 +100,7 @@ const EditProfile: React.FC<Props> = ({ user }) => {
         </div>
       </div>
       {/* Live update of user data in UserCard */}
-      <div className="flex h-[675px]">
+      <div className="flex min-h-[675px]  h-full md:h-[760px]">
       <UserCard user={formData} />
       </div>
       {showToast && (
