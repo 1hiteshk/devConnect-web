@@ -39,7 +39,7 @@ const Connections = (props: Props) => {
 
   return (
     <div className="text-center my-10">
-      <h1 className="font-bold text-2xl">Connections</h1>
+      <h1 className="font-bold text-2xl">Connections &nbsp; {connections.length}</h1>
       {connections.map((connection: any) => {
         const { _id, firstName, lastName, photoUrl, gender, age, about } =
           connection;

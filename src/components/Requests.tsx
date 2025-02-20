@@ -48,7 +48,7 @@ const Requests = (props: Props) => {
 
   return (
     <div className="text-center my-10">
-      <h1 className="font-bold text-2xl">requests</h1>
+      <h1 className="font-bold text-2xl">requests &nbsp; {requests.length}</h1>
       {requests.map((request: any) => {
         const { _id, firstName, lastName, photoUrl, gender, age, about } = request.fromUserId;
         return (
