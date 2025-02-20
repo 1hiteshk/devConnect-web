@@ -9,17 +9,17 @@ type Props = {};
 
 const Feed = (props: Props) => {
   const feed = useSelector((store: any) => store.feed);
-  const [page,setPage] = useState(1);
-  const [loading,setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   //console.log({ feed });
   //console.log(feed.length  );
   const dispatch = useDispatch();
 
   const getFeed = async (pageNum = 1) => {
-   // if (feed.length > 0) return;
-   if (loading) return;
-   setLoading(true);
+    // if (feed.length > 0) return;
+    if (loading) return;
+    setLoading(true);
     try {
       const res = await axios.get(`${BASE_URL}/feed?page=${pageNum}`, {
         withCredentials: true,
@@ -40,17 +40,21 @@ const Feed = (props: Props) => {
     getFeed();
   }, []);
 
-    const fetchMoreUsers = async () => {
-      if (feed.length === 1 || feed.length === 0) {
-        const nextPage = page + 1;
-        const newUsers = await getFeed(nextPage);
-        if (newUsers?.length > 0) {
-          setPage(nextPage);
-        }
+  const fetchMoreUsers = async () => {
+    if (feed.length === 1 || feed.length === 0) {
+      const nextPage = page + 1;
+      const newUsers = await getFeed(nextPage);
+      if (newUsers?.length > 0) {
+        setPage(nextPage);
+        dispatch(addFeed([...feed, ...newUsers]));
       }
-    };
+    }
+  };
+
+  //console.log({feed});
 
   useEffect(() => {
+    if (feed.length > 1) return;
     fetchMoreUsers();
   }, [feed]);
 
@@ -61,6 +65,7 @@ const Feed = (props: Props) => {
         No new users found
       </h1>
     );
+
   return (
     feed && (
       <div className="flex justify-center items-center my-10">
