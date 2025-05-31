@@ -16,27 +16,29 @@ const Body = (props: Props) => {
   const navigate = useNavigate();
   // once we have data in redux store we dont have to make api call again & again , check the store
   const userData = useSelector((store: any) => store.user);
+  // if userData is already present in redux store, we don't need to fetch it again
   const fetchUser = async () => {
-    if(userData) return ; 
+    if (userData) return;
     try {
       const res = await axios.get(`${BASE_URL}/profile/view`, {
         withCredentials: true,
       });
-      console.log(res,'res')
+      console.log(res, "res");
       dispatch(addUser(res.data));
     } catch (error) {
       // if user is not authenticated (not logged in), redirect to login page
-      if(error.status === 401) {
-      navigate('/login') }
+      if (error.status === 401) {
+        navigate("/login");
+      }
       console.error(error);
     }
   };
 
   useEffect(() => {
-      fetchUser();
+    fetchUser();
   }, []);
 
-  console.log(userData,'res');
+  console.log(userData, "res");
 
   return (
     /* min-h-screen:
@@ -47,9 +49,11 @@ Ensures the parent container spans at least the full height of the viewport. */
       {/*  any children routes of Body comp. will render over here in Outlet */}
       <Outlet />
       <Footer />
-      { userData && <div className="block md:hidden">
-        <BottomNavigation />
-      </div>}
+      {userData && (
+        <div className="block md:hidden">
+          <BottomNavigation />
+        </div>
+      )}
     </div>
   );
 };

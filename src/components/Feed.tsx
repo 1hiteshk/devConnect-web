@@ -4,6 +4,7 @@ import { BASE_URL } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -12,6 +13,7 @@ const Feed = (props: Props) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const isFetching = useRef(false); // ✅ Prevent multiple API calls
+  const navigate = useNavigate();
 
   //console.log({ feed });
   // console.log(feed.length  );
@@ -33,6 +35,9 @@ const Feed = (props: Props) => {
       isFetching.current = false;
       return users;
     } catch (error) {
+      if(error.status === 401) {
+        navigate('/login')
+      }
       console.log(error);
       setLoading(false);
       isFetching.current = false;
@@ -61,7 +66,7 @@ const Feed = (props: Props) => {
   useEffect(() => {
     // if (feed.length > 1 || loading) return;
     // fetchMoreUsers();
-    if (feed.length === 1) {
+    if (feed.length === 1 || feed.length === 0) {
       setPage((prev) => prev + 1);
     }
   }, [feed]);

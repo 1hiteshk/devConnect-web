@@ -55,6 +55,12 @@ const Navbar = (props: Props) => {
           <li><Link to={`/connections`}>Connections</Link></li>
           <li><Link to={`/requests`}> Requests</Link></li>
           <li><Link to={`/`}> Feed </Link></li>
+          <li><Link to={`/privacy-policy`}> privacy-policy</Link></li>
+          <li><Link to={`/terms-and-conditions`}> terms-and-conditions </Link></li>
+          <li><Link to={`/refund-policy`}> refund-policy </Link></li>
+          <li><Link to={`/shipping-policy`}> shipping-policy </Link></li>
+          <li><Link to={`/about-us`}> about-us </Link></li>
+          <li><Link to={`/contact-us`}> contact-us </Link></li>
           <li><a onClick={handleLogout}>Logout</a></li>
         </ul>
       </div>
